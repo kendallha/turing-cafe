@@ -1,0 +1,23 @@
+.resy-form {
+  height: 100%;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  align-items: space-around;
+  justify-content: center;
+}
+
+input {
+  margin: 3%;
+}
+
+.reservation-button {
+  height: 30%;
+  margin-top: 3%;
+  background-color: teal;
+  color: white;
+
+}
+

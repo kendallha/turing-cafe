@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Form.css';
 
 class Form extends Component {
   constructor() {
@@ -65,7 +66,7 @@ class Form extends Component {
         value={this.state.number}
         onChange={e => this.handleChange(e)}
       />
-      <button type='submit' onClick={e => this.submitReservation(e)}>Make Reservation</button>
+      <button className='reservation-button' type='submit' onClick={e => this.submitReservation(e)}>Make Reservation</button>
       </form>
     )
   }
