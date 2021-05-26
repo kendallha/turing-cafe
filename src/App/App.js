@@ -25,8 +25,9 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
+          {console.log("res", this.state.reservations)}
           {this.state.reservations && 
-          <ReservationList reservations={this.reservations} />}
+          <ReservationList reservations={this.state.reservations} />}
         </div>
       </div>
     )
