@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getReservations, postReservation } from '../api-calls.js';
+import { getReservations, postReservation, removeReservation } from '../api-calls.js';
 import ReservationList from '../ReservationList/ReservationList';
 import Form from '../Form/Form';
 import './App.css';
@@ -22,13 +22,14 @@ class App extends Component {
   addReservation = (newReservation) => {
     this.setState({ reservations: [...this.state.reservations, newReservation] });
     postReservation(newReservation)
-      .then(data => this.setState({ reservations: this.state.reservations }))
       .catch(error => this.setState({ error: 'Something went wrong, please try again.' }))
   }
 
   deleteReservation = (id) => {
     const filteredReservations = this.state.reservations.filter(reservation => reservation.id !== id);
     this.setState({ reservations: filteredReservations })
+    removeReservation(id)
+      .catch(error => this.setState({ error: 'We were unable to cancel this reservation. Please try again.'}))
   }
 
   render() {
