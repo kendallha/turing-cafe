@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getReservations } from '../api-calls.js'
 import './App.css';
 
 class App extends Component {
@@ -8,7 +9,12 @@ class App extends Component {
       reservations: null
     }
   }
-  
+
+  componentDidMount() {
+    getReservations()
+      .then(data => this.setState({ reservations: data }))
+  }
+
   render() {
     return (
       <div className="App">
