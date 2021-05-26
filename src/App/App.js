@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getReservations } from '../api-calls.js';
+import { getReservations, postReservation } from '../api-calls.js';
 import ReservationList from '../ReservationList/ReservationList';
 import Form from '../Form/Form';
 import './App.css';
@@ -8,24 +8,29 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      reservations: null
+      reservations: null,
+      error: null
     }
   }
 
   componentDidMount() {
     getReservations()
       .then(data => this.setState({ reservations: data }))
-      .catch(error => console.log(error))
+      .catch(error => this.setState({ error: 'Something went wrong, please try again.' }))
   }
 
   addReservation = (newReservation) => {
     this.setState({ reservations: [...this.state.reservations, newReservation] });
+    postReservation(newReservation)
+      .then(data => this.setState({ reservations: this.state.reservations }))
+      .catch(error => this.setState({ error: 'Something went wrong, please try again.' }))
   }
 
   render() {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
+        {this.state.error && <h2>{this.state.error}</h2>}
         <div className='resy-form'>
           <Form addReservation={this.addReservation}/>
         </div>
