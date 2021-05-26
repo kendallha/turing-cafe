@@ -4,3 +4,9 @@ article {
   border-radius: 8px;
   border: 4px solid teal;
 }
+
+.cancel {
+  background-color: teal;
+  width: 80%;
+  color: white;
+}
