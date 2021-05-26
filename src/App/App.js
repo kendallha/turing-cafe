@@ -26,6 +26,11 @@ class App extends Component {
       .catch(error => this.setState({ error: 'Something went wrong, please try again.' }))
   }
 
+  deleteReservation = (id) => {
+    const filteredReservations = this.state.reservations.filter(reservation => reservation.id !== id);
+    this.setState({ reservations: filteredReservations })
+  }
+
   render() {
     return (
       <div className="App">
@@ -35,8 +40,9 @@ class App extends Component {
           <Form addReservation={this.addReservation}/>
         </div>
         <div className='resy-container'>
+          {!this.state.reservations && <h1>There are no reservations currently.</h1>}
           {this.state.reservations && 
-          <ReservationList reservations={this.state.reservations} />}
+          <ReservationList deleteReservation={this.deleteReservation} reservations={this.state.reservations} />}
         </div>
       </div>
     )

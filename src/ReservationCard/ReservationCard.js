@@ -1,14 +1,14 @@
 import React from 'react';
 import './ReservationCard.css';
 
-const ReservationCard = ({ id, name, date, time, number }) => {
+const ReservationCard = ({ deleteReservation, id, name, date, time, number }) => {
   return (
-    <article id='id' className='res-card'>
+    <article className='res-card'>
       <h1>{name}</h1>
       <p>{date}</p>
       <p>{time} pm</p>
       <p>Number of guests: {number}</p>
-      <button className='cancel'>Cancel</button>
+      <button className='cancel' onClick={() => deleteReservation(id)}>Cancel</button>
     </article>
   )
 
